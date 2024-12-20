@@ -12,7 +12,7 @@ Recursos oferecidos pelo pacote:
 
 *   **Validação de Nomes:** Verifica se uma string corresponde a um nome válido, com opções para considerar apenas primeiro e último nome.
 *   **Validação de Números de Celular:** Valida números de celular, com suporte inicial para o formato de Angola (+244).
-## Migrar de 1.0.0 para 1.0.1
+## Migrar de 1.0.1 para 1.0.2
 Foi implementada mais segurança na validação de nomes de usuários
 
 ## Getting Started
