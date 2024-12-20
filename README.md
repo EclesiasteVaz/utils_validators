@@ -12,7 +12,8 @@ Recursos oferecidos pelo pacote:
 
 *   **Validação de Nomes:** Verifica se uma string corresponde a um nome válido, com opções para considerar apenas primeiro e último nome.
 *   **Validação de Números de Celular:** Valida números de celular, com suporte inicial para o formato de Angola (+244).
-*   **Validação de E-mails:** Verifica se uma string corresponde a um formato de e-mail válido.
+## Migrar de 1.0.0 para 1.0.1
+Foi implementada mais segurança na validação de nomes de usuários
 
 ## Getting Started
 
@@ -42,7 +43,7 @@ void main() {
   print(UtilsValidators.isName("Eclesiaste Vaz")); // true
   print(UtilsValidators.isName("Eclesiaste vaz")); // false (espaço extra no meio)
   print(UtilsValidators.isName("Eclesiaste Pedro Vaz")); // true
-  print(UtilsValidators.isName("Eclesiaste Pedro Vaz", isFirstAndLastName: true)); // true (valida apenas primeiro e último nome)
+  print(UtilsValidators.isName("Eclesiaste Pedro Vaz", isFirstAndLastName: true)); // false (valida apenas primeiro e último nome)
     print(UtilsValidators.isName("Eclesiaste")); //false
 }
 ```
@@ -55,6 +56,8 @@ void main() {
   print(UtilsValidators.isNumber("939164990")); // true
   print(UtilsValidators.isNumber("9391649900")); // false (número muito longo)
     print(UtilsValidators.isNumber("+244939164990")); //true
-    print(UtilsValidators.isNumber("939 164 990")); //false
-    print(UtilsValidators.isNumber("939-164-990"));// false
+    print(UtilsValidators.isNumber("939 164 990")); //true
+    print(UtilsValidators.isNumber("939-164-990"));// true
 }```
+
+

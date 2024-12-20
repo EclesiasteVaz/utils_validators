@@ -1,7 +1,7 @@
 library utils_validators;
 
-import 'package:flutter/foundation.dart';
 import 'package:utils_validators/core/enums.dart';
+import 'package:utils_validators/core/validators/name_validator.dart';
 import 'package:utils_validators/core/validators/number_validator.dart';
 
 export './core/enums.dart';
@@ -22,31 +22,8 @@ class UtilsValidators {
   ///    isName("Eclesiaste Vaz", isFirstAndLastName: true) // true
   /// ```
   static bool isName(String name, {bool isFirstAndLastName = false}) {
-    List<String> exceptions = <String>["em", "de", "dos", "do"];
-    name = name.trim();
-    List<String> names = name.split(" ");
-    int nameQuantity = 1;
-    for (final word in names) {
-      if (word.isEmpty) {
-        return false;
-      }
-      if (nameQuantity > 2 && isFirstAndLastName) {
-        return false;
-      }
-
-      /// caso é um nome excepção
-      if (exceptions.contains(word.toLowerCase())) {
-        continue;
-      }
-      nameQuantity++;
-
-      /// caso a primeira letra não é maiuscula
-      if (word[0] != word[0].toUpperCase()) {
-        debugPrint("A primeira deve ser maiuscula");
-        return false;
-      }
-    }
-    return true;
+    final NameValidator nameValidator = NameValidator(name: name);
+    return nameValidator.validate(isFirstAndLastName: isFirstAndLastName);
   }
 
   /// validar um número se está correcto ou errado

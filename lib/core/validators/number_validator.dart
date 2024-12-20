@@ -19,6 +19,7 @@ class NumberValidator {
 
   _validateAO() {
     number = number.replaceAll(' ', '');
+    number = number.replaceAll('-', '');
     final RegExp regExp = RegExp(r'^(?:\+244)?9[1-9][0-9]{7}$');
     if (regExp.hasMatch(number)) {
       return true;

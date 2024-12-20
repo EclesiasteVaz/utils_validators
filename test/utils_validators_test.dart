@@ -26,6 +26,10 @@ void main() {
           UtilsValidators.isName("Fredh Muzua Felix", isFirstAndLastName: true),
           false);
     });
+
+    test('vai ser valido se o nom for negado', () {
+      expect(UtilsValidators.isName("José Direto 2"), false);
+    });
   });
 
   group("Validações de números de celulares", () {
