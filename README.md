@@ -1,63 +1,61 @@
 # utils_validators
 
-Um pacote Flutter e Dart abrangente para validações comuns de dados, oferecendo validadores úteis para simplificar o desenvolvimento de seus aplicativos. Ideal para formulários de cadastro, entradas de usuário e muito mais.
+A comprehensive Flutter and Dart package for common data validations, providing useful validators to simplify your app development. Ideal for registration forms, user input and more.
 
-## Definição
+## Definition
 
-Este pacote fornece um conjunto robusto de validadores para seus projetos Flutter e Dart. Ele aborda casos comuns, como validação de nomes, números de celular (inicialmente com suporte para Angola +244) e endereços de e-mail, economizando tempo e esforço no desenvolvimento.
+This package provides a robust set of validators for your Flutter and Dart projects. It addresses common use cases such as validating names, mobile numbers (initially supporting Angola +244) and email addresses, saving development time and effort.
 
-## Features
+## Resources
 
-Recursos oferecidos pelo pacote:
+Features offered by the package:
 
-*   **Validação de Nomes:** Verifica se uma string corresponde a um nome válido, com opções para considerar apenas primeiro e último nome.
-*   **Validação de Números de Celular:** Valida números de celular, com suporte inicial para o formato de Angola (+244).
-## Migrar de 1.0.1 para 1.0.2
-Foi implementada mais segurança na validação de nomes de usuários
+* **Name Validation:** Checks if a string matches a valid name, with options to consider only first and last names.
+* **Mobile Number Validation:** Validates mobile numbers, with initial support for Angola format (+244).
+## Migrate from 1.0.1 to 1.0.2
+More security has been implemented in username validation
 
 ## Getting Started
 
-Para começar a usar o `utils_validators` em seu projeto:
+To start using `utils_validators` in your project:
 
-1.  **Adicione a dependência:**
+1. **Add dependency:**
 
 ```bash
 flutter pub add utils_validators
 ```
 
-2.  **Importe o package:**
+2. **Import the package:**
 
 ````dart
 import 'package:utils_validators/utils_validators.dart';
 ````
 ## Usage
 
-Aqui estão alguns exemplos de uso dos validadores:
+Here are some examples of using validators:
 
-### Validação de nome
+### Name validation
 
 ```dart
 import 'package:utils_validators/utils_validators.dart';
 
 void main() {
-  print(UtilsValidators.isName("Eclesiaste Vaz")); // true
-  print(UtilsValidators.isName("Eclesiaste vaz")); // false (espaço extra no meio)
-  print(UtilsValidators.isName("Eclesiaste Pedro Vaz")); // true
-  print(UtilsValidators.isName("Eclesiaste Pedro Vaz", isFirstAndLastName: true)); // false (valida apenas primeiro e último nome)
-    print(UtilsValidators.isName("Eclesiaste")); //false
+ print(UtilsValidators.isName("Ecclesiastes Vaz")); // true
+ print(UtilsValidators.isName("Ecclesiastes vaz")); // false (extra space in between)
+ print(UtilsValidators.isName("Ecclesiastes Pedro Vaz")); // true
+ print(UtilsValidators.isName("Ecclesiastes Pedro Vaz", isFirstAndLastName: true)); // false (validates only first and last name)
+ print(UtilsValidators.isName("Ecclesiastes")); //false
 }
 ```
 
-### Validação de Número de Celular (Angola +244)
+### Mobile Number Validation (Angola +244)
 ```dart
 import 'package:utils_validators/utils_validators.dart';
 
 void main() {
-  print(UtilsValidators.isNumber("939164990")); // true
-  print(UtilsValidators.isNumber("9391649900")); // false (número muito longo)
-    print(UtilsValidators.isNumber("+244939164990")); //true
-    print(UtilsValidators.isNumber("939 164 990")); //true
-    print(UtilsValidators.isNumber("939-164-990"));// true
+ print(UtilsValidators.isNumber("939164990")); // true
+ print(UtilsValidators.isNumber("9391649900")); // false (number too long)
+ print(UtilsValidators.isNumber("+244939164990")); //true
+ print(UtilsValidators.isNumber("939 164 990")); //true
+ print(UtilsValidators.isNumber("939-164-990"));// true
 }```
-
-
