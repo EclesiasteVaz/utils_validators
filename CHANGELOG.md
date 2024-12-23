@@ -1,4 +1,8 @@
-# 1.0.3
+# 1.1.0
+
+Aumentado mais validators e corrigidos erros
+
+## 1.0.3
 
 Melhorado a segurança na validação de nome
 

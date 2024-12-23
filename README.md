@@ -12,8 +12,13 @@ Features offered by the package:
 
 * **Name Validation:** Checks if a string matches a valid name, with options to consider only first and last names.
 * **Mobile Number Validation:** Validates mobile numbers, with initial support for Angola format (+244).
-## Migrate from 1.0.1 to 1.0.2
-More security has been implemented in username validation
+* **URL validation:** Checks if a string is a url correct or if was written correctly
+* **Equal validation:**  Checks if a string is equals to other, will allow switch if the validation is case-sentive or not.
+* **Email validation:** Checks if a string is a email correct
+* **More validation:** were implementeds a lot validations that you can explore
+
+## Migrate from 1.0.x to 1.1.0
+More security has been implemented in username validation and new validations
 
 ## Getting Started
 
@@ -40,11 +45,11 @@ Here are some examples of using validators:
 import 'package:utils_validators/utils_validators.dart';
 
 void main() {
- print(UtilsValidators.isName("Ecclesiastes Vaz")); // true
- print(UtilsValidators.isName("Ecclesiastes vaz")); // false (extra space in between)
- print(UtilsValidators.isName("Ecclesiastes Pedro Vaz")); // true
- print(UtilsValidators.isName("Ecclesiastes Pedro Vaz", isFirstAndLastName: true)); // false (validates only first and last name)
- print(UtilsValidators.isName("Ecclesiastes")); //false
+    print(UtilsValidators.isName("Fredh Muzua Felix"));// true
+    print(UtilsValidators.isName("Fredh Muzua Felix", isFirstAndLastName: true));// false (validates only first and last name)
+    print(UtilsValidators.isName("José Direto 2"));// false
+    print(UtilsValidators.isName("Eclesiaste")); //true
+    print(UtilsValidators.isName("eclesiaste")); //false
 }
 ```
 
@@ -58,4 +63,40 @@ void main() {
  print(UtilsValidators.isNumber("+244939164990")); //true
  print(UtilsValidators.isNumber("939 164 990")); //true
  print(UtilsValidators.isNumber("939-164-990"));// true
-}```
+}
+```
+
+### URL validation 
+```dart 
+import 'package:utils_validators/utils_validators.dart';
+
+void main (){
+    print(UtilsValidators.isURL("https://google.com/"));// true    
+    print(UtilsValidators.isURL("example.com"));// true
+    print(UtilsValidators.isUR("https://example"));// false
+} 
+```
+
+### Equal validation 
+
+```dart 
+import 'package:utils_validators/utils_validators.dart';
+
+void main (){
+    print(UtilsValidators.isEqual("Eclesiaste", "Eclesiaste"));// true
+    print(UtilsValidators.isEqual("Eclesiaste", "eclesiaste",  isCaseSentive: false));// true
+   
+}
+```
+
+
+### Email validation 
+
+```dart 
+import 'package:utils_validators/utils_validators.dart';
+
+void main (){ 
+    print(UtilsValidators.isEmail("eclesiaste@gmail.com"));// true
+    print(UtilsValidators.isEmail("eclesiaste"));// false 
+}
+```
