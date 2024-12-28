@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:utils_validators/utils_validators.dart';
 
 void main() {
@@ -84,6 +83,15 @@ void main() {
 
     test('vai ser válido se o email for invalido', () {
       expect(UtilsValidators.isEmail("eclesiaste"), false);
+    });
+  });
+
+  group('Validação de BI Angolano', () {
+    test('vai ser válido se o nif for valido', () {
+      expect(UtilsValidators.isAngolanId('001213259CC010'), true);
+    });
+    test('vai ser válido se o nif for invalido', () {
+      expect(UtilsValidators.isAngolanId('001213259AA010'), false);
     });
   });
 }
