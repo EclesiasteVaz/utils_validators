@@ -1,4 +1,8 @@
-# 1.1.0
+# 1.1.1
+
+chegada do angola id validation 
+
+## 1.1.0
 
 Aumentado mais validators e corrigidos erros
 
