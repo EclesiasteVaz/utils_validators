@@ -1,6 +1,7 @@
 library utils_validators;
 
 import 'package:utils_validators/core/enums.dart';
+import 'package:utils_validators/core/validators/angolan_id_validator.dart';
 import 'package:utils_validators/core/validators/email_validator.dart';
 import 'package:utils_validators/core/validators/equal_validator.dart';
 import 'package:utils_validators/core/validators/json_validator.dart';
@@ -84,5 +85,11 @@ class UtilsValidators {
   static bool isEmail(String email) {
     final emailValidator = EmailValidator(email: email);
     return emailValidator.validate();
+  }
+
+  /// Return true if the value is valid and false otherwise
+  static bool isAngolanId(String value) {
+    final angolaIdValidator = AngolanIdValidator();
+    return angolaIdValidator.validate(value: value);
   }
 }

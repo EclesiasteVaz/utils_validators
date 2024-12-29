@@ -15,6 +15,7 @@ Features offered by the package:
 * **URL validation:** Checks if a string is a url correct or if was written correctly
 * **Equal validation:**  Checks if a string is equals to other, will allow switch if the validation is case-sentive or not.
 * **Email validation:** Checks if a string is a email correct
+* **Angola ID validation:** Check if the angolan id number provided is valid or not.
 * **More validation:** were implementeds a lot validations that you can explore
 
 ## Migrate from 1.0.x to 1.1.0
@@ -49,7 +50,7 @@ void main() {
     print(UtilsValidators.isName("Fredh Muzua Felix", isFirstAndLastName: true));// false (validates only first and last name)
     print(UtilsValidators.isName("José Direto 2"));// false
     print(UtilsValidators.isName("Eclesiaste")); //true
-    print(UtilsValidators.isName("eclesiaste")); //false
+    print(UtilsValidators.isName("eclesiaste")); //false 
 }
 ```
 
@@ -98,5 +99,17 @@ import 'package:utils_validators/utils_validators.dart';
 void main (){ 
     print(UtilsValidators.isEmail("eclesiaste@gmail.com"));// true
     print(UtilsValidators.isEmail("eclesiaste"));// false 
+}
+```
+
+
+### Angola ID number validation 
+
+```dart 
+import 'package:utils_validators/utils_validators.dart';
+
+void main (){ 
+    print(UtilsValidators.isAngolanId("001213259CC010"));// true
+    print(UtilsValidators.isAngolanId("001213259AA010"));// false 
 }
 ```
