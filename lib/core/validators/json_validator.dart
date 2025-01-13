@@ -5,5 +5,6 @@ class JsonValidator {
 
   JsonValidator({required this.json});
 
+  /// TODO: implements a validation no dependecie of the package extern
   bool validate() => pckg_extern.isJson(json);
 }

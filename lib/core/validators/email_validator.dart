@@ -5,5 +5,6 @@ class EmailValidator {
 
   EmailValidator({required this.email});
 
+  /// TODO: implements a validation no dependecie of the package extern
   bool validate() => pckg_extern.isEmail(email);
 }

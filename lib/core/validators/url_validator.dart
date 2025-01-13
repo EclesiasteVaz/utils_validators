@@ -5,5 +5,6 @@ class UrlValidator {
 
   UrlValidator({required this.url});
 
+  /// TODO: implements a validation no dependecie of the package extern
   bool validate() => pckg_extern.isURL(url);
 }
