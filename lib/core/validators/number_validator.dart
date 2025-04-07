@@ -12,20 +12,37 @@ class NumberValidator {
 
   bool validate() {
     if (numberCountry == NumberCountry.ao) {
-      return _validateAO();
+      return _validateAO(number);
     }
     throw Exception("NumberCountry was not implemented");
   }
 
-  _validateAO() {
-    number = number.replaceAll(' ', '');
-    number = number.replaceAll('-', '');
-    final RegExp regExp = RegExp(r'^(?:\+244)?9[1-9][0-9]{7}$');
-    if (regExp.hasMatch(number)) {
-      return true;
-    } else {
+  bool _validateAO(String phoneNumber) {
+    final String numberCleaned = phoneNumber.replaceAll(RegExp(r'\D'), '');
+    String numberWithoutDDD = numberCleaned;
+    if (numberCleaned.length > 9) {
+      numberWithoutDDD = numberCleaned.substring(numberCleaned.length - 9);
+    }
+
+    if (numberWithoutDDD.length != 9 || !numberWithoutDDD.startsWith('9')) {
       return false;
     }
+
+    final String prefixo = numberWithoutDDD.substring(0, 3);
+
+    const Map<String, List<String>> operadoras = {
+      'Unitel': ['91', '92', '93', '94'],
+      'Movicel': ['96', '97'],
+      'Africell': ['95'],
+    };
+
+    for (final entry in operadoras.entries) {
+      if (entry.value.any((codigo) => prefixo.startsWith(codigo))) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   /// TODO: create others validators for other country

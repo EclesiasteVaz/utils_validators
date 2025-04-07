@@ -1,3 +1,7 @@
+# 1.1.2
+
+Melhorado a validação de números de telefone
+
 # 1.1.1
 
 chegada do angola id validation 

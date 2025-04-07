@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart' show debugPrint;
-
 class NameValidator {
   String name;
 
@@ -60,7 +58,6 @@ class NameValidator {
 
     for (final word in names) {
       if (word.isEmpty) {
-        debugPrint("Erro: Palavra vazia encontrada.");
         return false;
       }
 
@@ -71,20 +68,14 @@ class NameValidator {
       nameQuantity++;
 
       if (nameQuantity > 2 && isFirstAndLastName) {
-        debugPrint(
-            "Erro: Mais de dois nomes para validação de primeiro e último nome.");
         return false;
       }
 
       if (word[0] != word[0].toUpperCase()) {
-        debugPrint(
-            "Erro: A primeira letra da palavra '$word' não é maiúscula.");
         return false;
       }
 
       if (!_checkLetterNotAllowed(word)) {
-        debugPrint(
-            "Erro: Caracteres não permitidos encontrados na palavra '$word'.");
         return false;
       }
     }
@@ -94,8 +85,6 @@ class NameValidator {
   bool _checkLetterNotAllowed(String name) {
     for (int index = 0; index < name.length; index++) {
       if (letterAllowed.contains(name[index])) {
-        debugPrint(
-            "Erro específico: Caractere '${name[index]}' não permitido em '$name'.");
         return false;
       }
     }
