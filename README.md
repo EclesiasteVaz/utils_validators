@@ -1,20 +1,31 @@
 # `utils_validators`
 
-A complete and lightweight validation library for Dart and Flutter. Simplify string validation with an elegant and intuitive syntax, eliminating the need for complex external dependencies.
+**A Complete and Lightweight Validation Library for Dart and Flutter.**
 
-## 🚀 Why Use `utils_validators`?
+Simplify your string validation logic with an elegant, intuitive, and dependency-free API.
 
-  - **Zero External Dependencies**: All validators are built using only native Dart libraries, keeping your project lightweight and free from conflicts.
-  - **Fluent API**: Use validation directly on your string, like `'hello'.isLowercase()`, removing the need to create class instances.
-  - **Reliability**: Each validator was rigorously developed with TDD (Test-Driven Development) to ensure precision and reliability.
+**Current Version: 1.2.1** 🚀
+
+<br>
+
+## 🌟 Key Features
+
+| Feature | Description |
+| :--- | :--- |
+| **Zero Dependencies** | Built using only native Dart libraries, keeping your project lean. |
+| **Fluent Extension API** | Validate strings directly: `'john doe'.isValidName()`. |
+| **Flutter-Native API (New\!)** | Use the new static `validate` method, perfectly compatible with `TextFormField.validator`. |
+| **Robust & Tested** | Rigorously developed with TDD (Test-Driven Development) for reliable results. |
+
+<br>
 
 ## 📦 Installation
 
-Add the dependency to your `pubspec.yaml` file:
+Add the dependency to your `pubspec.yaml` file, ensuring you use version `1.2.1` or higher:
 
 ```yaml
 dependencies:
-  utils_validators: ^1.0.0
+  utils_validators: ^1.2.1
 ```
 
 Then, run the command in your terminal:
@@ -23,138 +34,163 @@ Then, run the command in your terminal:
 dart pub get
 ```
 
+<br>
+
 ## 💡 Getting Started
 
-First, import the library into your Dart file. You can import all validators at once or just the specific ones you need.
+Import the library to gain access to all validators and string extensions:
 
 ```dart
-// Imports all validators for quick access
+// Imports all validators
 import 'package:utils_validators/utils_validators.dart';
 ```
 
-## 📚 Documentation and Examples
+<br>
 
-Here is a detailed look at each validator, with usage examples and explanations of its functionality.
+## 🛠 Usage in Flutter Forms (New in 1.2.1)
+
+The new static `validate` method allows for seamless integration with Flutter's `TextFormField` or `TextField` widgets.
+
+The signature is simple: `String? Function(String text, {params, String message})`. It returns:
+
+  * `null` on success.
+  * A `String` error message on failure.
+
+### Example with `NameValidator`
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:utils_validators/utils_validators.dart';
+
+// Use this directly in your TextFormField
+TextFormField(
+  decoration: const InputDecoration(labelText: 'Full Name'),
+  validator: (value) => NameValidator.validate(
+    // Always handle potential null from the form field
+    value ?? '', 
+    minWords: 2, 
+    message: 'Please enter your full name (minimum 2 words).',
+  ),
+),
+```
+
+<br>
+
+## 📚 Detailed Documentation and Examples
 
 ### **`NameValidator`**
 
-Validates whether a string is a name, checking for correct capitalization and a minimum number of words. Useful for full name fields in forms.
+Validates if a string is a name, checking for correct capitalization and a minimum word count.
 
-  - **`isValidName({int minWords = 2})`**: Checks the format and word count.
-
-<!-- end list -->
+| API | Description |
+| :--- | :--- |
+| **Extension:** `isValidName({int minWords = 2})` | Checks format and word count (returns `bool`). |
+| **Static (Flutter):** `validate(String text, {int minWords, String message})` | Returns `String?` for use in `TextFormField.validator`. |
 
 ```dart
-// Example usage
+// Extension API
 void main() {
   String fullName = 'John Peter Smith';
   String invalidCase = 'john smith';
-  String singleName = 'Mary';
 
-  // Validate a full name (default minWords is 2)
-  bool isFullNameValid = fullName.isValidName(); // `minWords` padrão é 2
-  print('"$fullName" is a valid full name? $isFullNameValid');
-  // Output: "John Peter Smith" is a valid full name? true
+  print('"$fullName" is valid? ${fullName.isValidName()}');
+  // Output: "John Peter Smith" is valid? true
 
-  // Check for incorrect capitalization
-  bool isInvalidCaseValid = invalidCase.isValidName();
-  print('"$invalidCase" is a valid name? $isInvalidCaseValid');
-  // Output: "john smith" is a valid name? false
-
-  // Check a name with fewer words than required
-  bool isSingleNameValid = singleName.isValidName(minWords: 2);
-  print('"$singleName" is a valid full name? $isSingleNameValid');
-  // Output: "Mary" is a valid full name? false
+  // Static API (used in Flutter, but works in Dart)
+  String? error = NameValidator.validate(
+    invalidCase, 
+    message: 'Name capitalization is incorrect.',
+  );
+  print('Error for "$invalidCase": $error');
+  // Output: Error for "john smith": Name capitalization is incorrect.
 }
 ```
 
+-----
+
 ### **`EmailValidator`**
 
-Validates an email address format using a robust regex pattern, ensuring the presence of an "@" symbol, a domain, and a TLD.
+Validates an email address format using a robust regex pattern.
 
-  - **`isValidEmail()`**: Returns `true` if the email format is valid.
+  - **Extension:** `isValidEmail()`
+  - **Static (Flutter):** `validate(String text, {String message = 'Email invalid'})`
 
 <!-- end list -->
 
 ```dart
-// Example usage
 void main() {
   String validEmail = 'contact@redotpay.com';
   String malformedEmail = 'contact@redotpay';
 
-  print('"$validEmail" is a valid email? ${validEmail.isValidEmail()}');
-  // Output: "contact@redotpay.com" is a valid email? true
+  print('"$validEmail" is valid? ${validEmail.isValidEmail()}');
+  // Output: "contact@redotpay.com" is valid? true
 
-  print('"$malformedEmail" is a valid email? ${malformedEmail.isValidEmail()}');
-  // Output: "contact@redotpay" is a valid email? false
+  String? error = EmailValidator.validate(malformedEmail);
+  print('Error for "$malformedEmail": $error');
+  // Output: Error for "contact@redotpay": Email invalid
 }
 ```
 
+-----
+
 ### **`UrlValidator`**
 
-Verifies if a string is a valid URL. The validator handles protocols (`http`, `https`), subdomains, ports, and local hosts like `localhost`.
+Verifies if a string is a valid URL, handling protocols (`http`, `https`), subdomains, and local hosts.
 
-  - **`isValidUrl()`**: Returns `true` if the URL has a valid format.
+  - **Extension:** `isValidUrl()`
 
 <!-- end list -->
 
 ```dart
-// Example usage
 void main() {
   String validUrl = 'https://www.google.com/search?q=dart';
-  String localUrl = 'http://localhost:8080';
-  String invalidUrl = 'www.example.com';
+  String invalidUrl = 'www.example.com'; // Missing protocol
 
   print('"$validUrl" is a valid URL? ${validUrl.isValidUrl()}');
   // Output: "https://www.google.com/search?q=dart" is a valid URL? true
-
-  print('"$localUrl" is a valid URL? ${localUrl.isValidUrl()}');
-  // Output: "http://localhost:8080" is a valid URL? true
 
   print('"$invalidUrl" is a valid URL? ${invalidUrl.isValidUrl()}');
   // Output: "www.example.com" is a valid URL? false
 }
 ```
 
+-----
+
 ### **`DateTimeValidator`**
 
-Validates strings in the international **ISO 8601** standard (`YYYY-MM-DD`). The validation is strict to avoid ambiguity.
+Validates strings in the strict international **ISO 8601** standard (`YYYY-MM-DD`).
 
-  - **`isValidDateTime()`**: Returns `true` if the string is a valid ISO 8601.
+  - **Extension:** `isValidDateTime()`
 
 <!-- end list -->
 
 ```dart
-// Example usage
 void main() {
   String date = '2023-10-27';
-  String fullDateTime = '2023-10-27T10:30:00Z';
   String invalidDate = '31-02-2023';
 
   print('"$date" is a valid date? ${date.isValidDateTime()}');
   // Output: "2023-10-27" is a valid date? true
-
-  print('"$fullDateTime" is a valid date and time? ${fullDateTime.isValidDateTime()}');
-  // Output: "2023-10-27T10:30:00Z" is a valid date and time? true
 
   print('"$invalidDate" is a valid date? ${invalidDate.isValidDateTime()}');
   // Output: "31-02-2023" is a valid date? false
 }
 ```
 
+-----
+
 ### **`JsonValidator`**
 
-Checks if a string represents valid JSON. Validation is done natively and efficiently by attempting to decode the string.
+Checks if a string represents valid JSON by attempting to decode it natively.
 
-  - **`isJson()`**: Returns `true` if the string can be parsed as JSON.
+  - **Extension:** `isJson()`
 
 <!-- end list -->
 
 ```dart
-// Example usage
 void main() {
   String validJson = '{"name": "Alice"}';
-  String invalidJson = '{"name": "Alice"';
+  String invalidJson = '{"name": "Alice"'; // Missing closing brace
 
   print('Is the string valid JSON? ${validJson.isJson()}');
   // Output: Is the string valid JSON? true
@@ -164,22 +200,24 @@ void main() {
 }
 ```
 
-## 🛠 Other Validators
+-----
 
-### **Character Validation (`CharacterValidator`)**
+## ⚙️ Other Validators
 
-  - **`isAlphabetic`**: Returns `true` if the string contains only letters.
-  - **`isNumeric`**: Returns `true` if the string contains only numbers.
-  - **`isAlphanumeric`**: Returns `true` if the string contains only letters and numbers.
+### **Character Validation** (`CharacterValidator`)
 
-### **Case Validation (`UppercaseValidator`, `LowercaseValidator`)**
+  - **`isAlphabetic`**: Contains only letters.
+  - **`isNumeric`**: Contains only numbers.
+  - **`isAlphanumeric`**: Contains only letters and numbers.
 
-  - **`isUppercase()`**: Returns `true` if the string is all uppercase.
-  - **`isLowercase()`**: Returns `true` if the string is all lowercase.
+### **Case Validation** (`UppercaseValidator`, `LowercaseValidator`)
 
-### **Equality Validation (`EqualValidator`)**
+  - **`isUppercase()`**: String is all uppercase.
+  - **`isLowercase()`**: String is all lowercase.
 
-  - **`equals(String toEqual, {bool isCaseSensitive = true})`**: Compares two strings with an option for case-insensitive matching.
+### **Equality Validation** (`EqualValidator`)
+
+  - **`equals(String toEqual, {bool isCaseSensitive = true})`**: Compares two strings.
 
 ### **Document Validation (Angola)**
 
@@ -187,9 +225,9 @@ void main() {
 
 -----
 
-## ☕ Help Keep This Project Running
+## ☕ Support the Project
 
-If this package has made your work easier, consider buying me a coffee. Every donation helps me dedicate more time to open-source projects like this one.
+If this package has saved you time, please consider supporting its maintenance and future development.
 
 **Support me with a RedotPay transfer:**
 
