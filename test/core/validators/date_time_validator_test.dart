@@ -2,50 +2,49 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:utils_validators/utils_validators.dart';
 
 void main() {
-  final dateTimeValidator = DateTimeValidator();
   group('DateTimeValidator', () {
     // --- Testes para formatos válidos (ISO 8601) ---
     test('should return true for a valid date string (YYYY-MM-DD)', () {
-      expect(dateTimeValidator.validate('2023-10-27'), null);
+      expect(DateTimeValidator.validate('2023-10-27'), null);
     });
 
     test('should return true for a valid date and time string', () {
-      expect(dateTimeValidator.validate('2023-10-27T10:30:00'), null);
+      expect(DateTimeValidator.validate('2023-10-27T10:30:00'), null);
     });
 
     test('should return true for a valid date with timezone', () {
-      expect(dateTimeValidator.validate('2023-10-27T10:30:00Z'), null);
+      expect(DateTimeValidator.validate('2023-10-27T10:30:00Z'), null);
     });
 
     test('should return true for a valid date with microseconds', () {
-      expect(dateTimeValidator.validate('2023-10-27 10:30:00.123456Z'), null);
+      expect(DateTimeValidator.validate('2023-10-27 10:30:00.123456Z'), null);
     });
 
     // --- Testes para formatos inválidos ---
     test('should return false for an invalid date format (DD-MM-YYYY)', () {
-      expect(dateTimeValidator.validate('27-10-2023'), isA<String>());
+      expect(DateTimeValidator.validate('27-10-2023'), isA<String>());
     });
 
     // Testes separados para maior clareza e detecção de erros
     test('should return false for an invalid month', () {
-      expect(dateTimeValidator.validate('2023-13-01'), isA<String>());
+      expect(DateTimeValidator.validate('2023-13-01'), isA<String>());
     });
 
     test('should return false for an invalid day', () {
-      expect(dateTimeValidator.validate('2023-10-32'), isA<String>());
+      expect(DateTimeValidator.validate('2023-10-32'), isA<String>());
     });
 
     test('should return false for a non-date string', () {
-      expect(dateTimeValidator.validate('not a date'), isA<String>());
+      expect(DateTimeValidator.validate('not a date'), isA<String>());
     });
 
     // --- Testes de casos de borda ---
     test('should return false for an empty string', () {
-      expect(dateTimeValidator.validate(''), isA<String>());
+      expect(DateTimeValidator.validate(''), isA<String>());
     });
 
     test('should return false for a string with only spaces', () {
-      expect(dateTimeValidator.validate('    '), isA<String>());
+      expect(DateTimeValidator.validate('    '), isA<String>());
     });
   });
 }

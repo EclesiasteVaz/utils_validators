@@ -1,4 +1,7 @@
-# 1.2.0
+# 1.2.1
+Nova API fácil de conexão com os TextField do flutter trazendo um função que retorna String? facilitando a coneão e menos códigos
+
+## 1.2.0
 Nova Arquitetura: Todos os validadores foram transformados em extensões de String, proporcionando uma API mais fluida e intuitiva (ex: 'email'.isValidEmail()).
 
 Melhoria: Documentação e exemplos de código aprimorados para uma melhor clareza e experiência do desenvolvedor, seguindo um padrão de documentação de alto nível.

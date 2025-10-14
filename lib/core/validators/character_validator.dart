@@ -1,17 +1,39 @@
 part of '../../utils_validators.dart';
 
-/// An extension on [String] that provides a utility for character validation.
-extension CharacterValidator on String {
-  /// Checks if the string contains only alphabetic characters.
-  ///
-  /// This includes both uppercase and lowercase letters.
-  bool get isAlphabetic => RegExp(r'^[a-zA-Z]+$').hasMatch(this);
+class CharacterValidator {
+  CharacterValidator._();
 
-  /// Checks if the string contains only numeric digits.
-  bool get isNumeric => RegExp(r'^[0-9]+$').hasMatch(this);
+  static String? validate(String text,
+      {String message = 'Invalid', required CharacterValidation validation}) {
+    if (validation == CharacterValidation.alphaNumeric) {
+      return _validateAlphaNumeric(text, message);
+    }
 
-  /// Checks if the string contains only alphanumeric characters.
-  ///
-  /// This includes letters and numbers.
-  bool get isAlphanumeric => RegExp(r'^[a-zA-Z0-9]+$').hasMatch(this);
+    if (validation == CharacterValidation.alphabetic) {
+      return _validateAlphabetic(text, message);
+    }
+
+    if (validation == CharacterValidation.numeric) {
+      return _validateNumeric(text, message);
+    }
+
+    throw Exception('Validation not implemented');
+  }
+
+  static String? _validateAlphaNumeric(String text, String message) {
+    if (text.isAlphanumeric) return null;
+    return message;
+  }
+
+  static String? _validateNumeric(String text, String message) {
+    if (text.isNumeric) return null;
+    return message;
+  }
+
+  static String? _validateAlphabetic(String text, String message) {
+    if (text.isAlphabetic) return null;
+    return message;
+  }
 }
+
+enum CharacterValidation { alphaNumeric, numeric, alphabetic }

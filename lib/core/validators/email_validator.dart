@@ -1,12 +1,9 @@
 part of '../../utils_validators.dart';
 
-final class EmailValidator extends UtilsValidators {
-  final String message;
+class EmailValidator {
+  EmailValidator._();
 
-  EmailValidator({this.message = 'Email invalid'});
-
-  @override
-  String? validate(String email) {
+  static String? validate(String email, [String message = 'Email invalid']) {
     final result = email.isValidEmail();
     if (result) return null;
     return message;

@@ -1,12 +1,10 @@
 part of '../../utils_validators.dart';
 
-class DateTimeValidator extends UtilsValidators {
-  final String message;
+class DateTimeValidator {
 
-  DateTimeValidator({this.message = 'Date is invalid'});
+  DateTimeValidator._();
 
-  @override
-  String? validate(String value) {
+  static String? validate(String value, [String message = 'Date is invalid']) {
     final result = value.isValidDateTime();
     if (result) return null;
     return message;
