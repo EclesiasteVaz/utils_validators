@@ -13,6 +13,7 @@ void main() {
     test('should return true for valid full names', () {
       expect(NameValidator.validate('João Pedro', minWords: 2), null);
       expect(NameValidator.validate('Ana Clara de Souza', minWords: 2), null);
+      expect(NameValidator.validate('Ana Clara de Souza', minWords: 2, maxWords: 2), isA<String>());
     });
   });
 

@@ -51,6 +51,9 @@ extension NameValidatorExtension on String {
         .split(RegExp(r'\s+'))
         .where((word) => word.isNotEmpty)
         .toList();
+    for (var wordException in _nameParticles) {
+      words.removeWhere((word) => word.toLowerCase() == wordException);
+    }
     final wordCount = words.length;
 
     // 1. Check if the word count is within the specified range.
