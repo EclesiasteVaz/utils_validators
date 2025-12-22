@@ -4,7 +4,7 @@
 
 Simplify your string validation logic with an elegant, intuitive, and dependency-free API.
 
-**Current Version: 1.2.1** 🚀
+**Current Version: 1.2.2** 🚀
 
 <br>
 

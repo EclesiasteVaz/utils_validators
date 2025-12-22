@@ -1,4 +1,7 @@
-# 1.2.1
+# 1.2.2
+Melhorado ainda mais a validação de nomes.
+
+## 1.2.1
 Nova API fácil de conexão com os TextField do flutter trazendo um função que retorna String? facilitando a coneão e menos códigos
 
 ## 1.2.0
