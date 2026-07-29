@@ -5,12 +5,6 @@ part of '../../utils_validators.dart';
 /// This extension provides a streamlined way to check if a string represents a valid
 /// phone number for a given country, currently supporting Angola (AO).
 extension NumberValidatorExtension on String {
-  /// A list of supported countries for phone number validation.
-  ///
-  /// This enum helps to avoid string-based errors and makes the API clearer.
-  // ignore: constant_identifier_names
-  static const List<NumberCountry> supportedCountries = [NumberCountry.ao];
-
   /// Validates a phone number based on the rules of a specific country.
   ///
   /// Parameters:
