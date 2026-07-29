@@ -47,7 +47,7 @@ import 'package:utils_validators/utils_validators.dart';
 
 <br>
 
-## 🛠 Usage in Flutter Forms (New in 1.2.1)
+## 🛠 Usage in Flutter Forms (New in 2.0.0)
 
 The new static `validate` method allows for seamless integration with Flutter's `TextFormField` or `TextField` widgets.
 
