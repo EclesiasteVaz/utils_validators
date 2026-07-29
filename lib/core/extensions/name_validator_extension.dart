@@ -12,7 +12,8 @@ extension NameValidatorExtension on String {
   /// apostrophes, as well as accented letters in many languages.
   /// It correctly handles multiple spaces between words.
   static final RegExp _namePattern = RegExp(
-    r"^[a-zA-Z\s'’´`áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ-]+$",
+    r"^[\p{L}\s'’´`-]+$",
+    unicode: true,
   );
 
   /// A list of common name particles (prepositions) that should not be capitalized
@@ -51,26 +52,23 @@ extension NameValidatorExtension on String {
         .split(RegExp(r'\s+'))
         .where((word) => word.isNotEmpty)
         .toList();
-    for (var wordException in _nameParticles) {
-      words.removeWhere((word) => word.toLowerCase() == wordException);
-    }
-    final wordCount = words.length;
 
-    // 1. Check if the word count is within the specified range.
-    if (wordCount < minWords) {
+    final significantWords =
+        words.where((word) => !_nameParticles.contains(word.toLowerCase())).length;
+
+    if (minWords > 0 && significantWords < minWords) {
       return false;
     }
-    if (maxWords != null && wordCount > maxWords) {
+    if (maxWords != null && words.length > maxWords) {
       return false;
     }
 
-    // 2. Validate capitalization for each word.
-    for (var i = 0; i < wordCount; i++) {
+    for (var i = 0; i < words.length; i++) {
       final word = words[i];
       final lowerCaseWord = word.toLowerCase();
 
-      if (_nameParticles.contains(lowerCaseWord) && i > 0) {
-        if (word != lowerCaseWord) {
+      if (_nameParticles.contains(lowerCaseWord)) {
+        if (i == 0 || word != lowerCaseWord) {
           return false;
         }
       } else {
