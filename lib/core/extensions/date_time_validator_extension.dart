@@ -23,10 +23,9 @@ extension DateTimeValidatorExtension on String {
       return false;
     }
 
-    // This regex covers most common ISO 8601 formats.
-    const pattern = r'^(-?(?:[1-9][0-9]*)?[0-9]{4})' // Ano
-        r'(-?(?:1[0-2]|0[1-9]))' // Mês
-        r'(-?(?:3[01]|0[1-9]|[12][0-9]))' // Dia
+    const pattern = r'^([0-9]{4})' // Ano
+        r'(?:-(?:1[0-2]|0[1-9]))' // Mês
+        r'(?:-(?:3[01]|0[1-9]|[12][0-9]))' // Dia
         r'(?:T| )?' // Separador de tempo opcional 'T' ou um espaço
         r'(?:(?:[01]?[0-9]|2[0-3]))?' // Hora opcional
         r'(?::?[0-5]?[0-9])?' // Minuto opcional
