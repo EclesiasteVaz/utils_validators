@@ -13,7 +13,7 @@ void main() {
       );
     });
 
-    test('should return String? for non-alphabetic string', () {
+    test('should return error message for non-alphabetic string', () {
       expect(
         CharacterValidator.validate(
           'hello123',
@@ -33,7 +33,7 @@ void main() {
       );
     });
 
-    test('should return String? for non-numeric string', () {
+    test('should return error message for non-numeric string', () {
       expect(
         CharacterValidator.validate(
           '123abc',
@@ -53,7 +53,7 @@ void main() {
       );
     });
 
-    test('should return String? for non-alphanumeric string', () {
+    test('should return error message for non-alphanumeric string', () {
       expect(
         CharacterValidator.validate(
           'user-123',
@@ -63,7 +63,7 @@ void main() {
       );
     });
 
-    test('should return String? for empty string', () {
+    test('should return error message for empty string', () {
       expect(
         CharacterValidator.validate(
           '',

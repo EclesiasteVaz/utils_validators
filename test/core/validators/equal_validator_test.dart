@@ -7,7 +7,7 @@ void main() {
       expect(EqualValidator.validate(text: 'Dart', toText: 'Dart'), null);
     });
 
-    test('should return String? when strings have different casing', () {
+    test('should return error message when strings have different casing', () {
       expect(
         EqualValidator.validate(text: 'Hello', toText: 'hello'),
         isA<String>(),
@@ -25,7 +25,7 @@ void main() {
       );
     });
 
-    test('should return String? when strings are different', () {
+    test('should return error message when strings are different', () {
       expect(
         EqualValidator.validate(text: 'Dart', toText: 'Flutter'),
         isA<String>(),

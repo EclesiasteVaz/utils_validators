@@ -15,12 +15,12 @@ void main() {
       expect(UppercaseValidator.validate('123 ABC-DEF_GHI'), null);
     });
 
-    test('should return String? for a string with mixed casing', () {
+    test('should return error message for a string with mixed casing', () {
       expect(UppercaseValidator.validate('Hello World'), isA<String>());
       expect(UppercaseValidator.validate('dArt'), isA<String>());
     });
 
-    test('should return String? for a string that is all lowercase', () {
+    test('should return error message for a string that is all lowercase', () {
       expect(UppercaseValidator.validate('hello world'), isA<String>());
       expect(UppercaseValidator.validate('lowercase'), isA<String>());
     });

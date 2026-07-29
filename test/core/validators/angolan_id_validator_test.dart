@@ -5,7 +5,7 @@ void main() {
   group('AngolanIdValidator FOR FLUTTER API', () {
     // --- Testes para IDs Válidos ---
     test(
-        'should return true for a valid Angolan ID with a recognized province code',
+        'should return null for a valid Angolan ID with a recognized province code',
         () {
       // Testes com diferentes províncias válidas
       expect(AngolanIdValidator.validate('012345678BL001'), null); // Benguela
@@ -15,7 +15,7 @@ void main() {
     });
 
     // --- Testes para IDs Inválidos (Formato) ---
-    test('should return false for IDs with incorrect length', () {
+    test('should return error message for IDs with incorrect length', () {
       expect(AngolanIdValidator.validate('123456789LU01'),
           isA<String>()); // Falta um dígito no final
       expect(AngolanIdValidator.validate('12345678LU001'),
