@@ -1,5 +1,17 @@
 # 1.2.3
 Melhorias na validação de e-mail, caracteres e nomes, com correção de bugs no NameValidator.
+- Correção: suporte a TLDs longos no EmailValidator (ex: .agency, .photography)
+- Correção: EmailValidator agora aceita '+' no local part (ex: user+tag@example.com)
+- Correção: CharacterValidator agora suporta letras acentuadas (Unicode)
+- Correção: NameValidator agora suporta caracteres Unicode e partículas capitalizadas no início
+- Correção: NameValidator não remove mais partículas antes de contar palavras
+- Correção: UrlValidator agora valida porta dentro do range válido (0-65535)
+- Correção: DateTimeValidator agora rejeita anos com mais de 4 dígitos e anos negativos
+- Correção: EqualValidator agora tem tipo String explícito no parâmetro toText
+- Correção: CharacterValidator não lança mais exceção para enum desconhecido
+- Correção: lowercase_validator_example.dart agora mostra o exemplo correto
+- Novo: Testes para UppercaseValidator, CharacterValidator, EqualValidator (Flutter API)
+- Novo: Testes para UppercaseValidatorExtension
 
 ## 1.2.2
 Melhorado ainda mais a validação de nomes.
