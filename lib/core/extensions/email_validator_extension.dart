@@ -27,7 +27,7 @@ extension EmailValidatorExtension on String {
     // - A valid local part (before the @).
     // - An @ symbol.
     // - A domain name with a TLD (e.g., .com, .org, etc.).
-    const pattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$';
+    const pattern = r'^[\w+-]+(\.[\w+-]+)*@([\w-]+\.)+[\w-]{2,}$';
     final regex = RegExp(pattern);
 
     return regex.hasMatch(this);

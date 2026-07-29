@@ -3,16 +3,13 @@
 import 'package:utils_validators/utils_validators.dart';
 
 void main() {
-  String text1 = 'Dart';
-  String text2 = 'dart';
+  String allLower = 'hello world';
+  String mixedCase = 'Hello World';
 
-  // Perform a case-sensitive comparison (default behavior).
-  bool areEqualCaseSensitive = text1.equals(text2);
-  print(
-      'Are "$text1" and "$text2" equal (case-sensitive)? $areEqualCaseSensitive'); // Output: false
+  bool isValidLowercase = allLower.isLowercase();
+  print('Is "$allLower" all lowercase? $isValidLowercase'); // Output: true
 
-  // Perform a case-insensitive comparison.
-  bool areEqualCaseInsensitive = text1.equals(text2, isCaseSensitive: false);
+  bool isInvalidLowercase = mixedCase.isLowercase();
   print(
-      'Are "$text1" and "$text2" equal (case-insensitive)? $areEqualCaseInsensitive'); // Output: true
+      'Is "$mixedCase" all lowercase? $isInvalidLowercase'); // Output: false
 }
