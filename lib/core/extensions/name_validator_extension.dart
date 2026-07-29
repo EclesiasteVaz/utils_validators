@@ -53,10 +53,7 @@ extension NameValidatorExtension on String {
         .where((word) => word.isNotEmpty)
         .toList();
 
-    final significantWords =
-        words.where((word) => !_nameParticles.contains(word.toLowerCase())).length;
-
-    if (minWords > 0 && significantWords < minWords) {
+    if (minWords > 0 && words.length < minWords) {
       return false;
     }
     if (maxWords != null && words.length > maxWords) {
@@ -68,8 +65,10 @@ extension NameValidatorExtension on String {
       final lowerCaseWord = word.toLowerCase();
 
       if (_nameParticles.contains(lowerCaseWord)) {
-        if (i == 0 || word != lowerCaseWord) {
-          return false;
+        if (i == 0) {
+          if (word[0] != word[0].toUpperCase()) return false;
+        } else {
+          if (word != lowerCaseWord) return false;
         }
       } else {
         if (word[0] != word[0].toUpperCase()) {

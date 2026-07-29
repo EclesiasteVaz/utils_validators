@@ -63,9 +63,14 @@ void main() {
       expect('Pedro DE Paula'.isValidName(), isFalse);
     });
 
-    test('should return false for names with particles at the beginning', () {
+    test('should return false for names with particles at the beginning (lowercase)', () {
       expect('dos Santos'.isValidName(), isFalse);
       expect('de Almeida'.isValidName(), isFalse);
+    });
+
+    test('should return true for names with capitalized particles at the start', () {
+      expect('Dos Santos'.isValidName(), isTrue);
+      expect('De Almeida'.isValidName(), isTrue);
     });
 
     test('should return false for empty or null strings', () {
