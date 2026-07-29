@@ -5,7 +5,7 @@ class EqualValidator {
 
   static String? validate({
     required String text,
-    required toText,
+    required String toText,
     bool isCaseSensitive = true,
     String message = 'Are Not equal',
   }) {

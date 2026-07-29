@@ -17,7 +17,7 @@ class CharacterValidator {
       return _validateNumeric(text, message);
     }
 
-    throw Exception('Validation not implemented');
+    return message;
   }
 
   static String? _validateAlphaNumeric(String text, String message) {
