@@ -4,7 +4,7 @@
 
 Simplify your string validation logic with an elegant, intuitive, and dependency-free API.
 
-**Current Version: 1.2.3** 🚀
+**Current Version: 2.0.0** 🚀
 
 <br>
 
@@ -21,11 +21,11 @@ Simplify your string validation logic with an elegant, intuitive, and dependency
 
 ## 📦 Installation
 
-Add the dependency to your `pubspec.yaml` file, ensuring you use version `1.2.1` or higher:
+Add the dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  utils_validators: ^1.2.1
+  utils_validators: ^2.0.0
 ```
 
 Then, run the command in your terminal:
@@ -224,6 +224,20 @@ void main() {
   - **`isValidAngolanId()`**: Validates the format and province code of an Angolan Citizen ID.
 
 -----
+
+## ⚠️ Migrating from 1.x to 2.0.0
+
+### Breaking Changes
+
+1. **`EqualValidator.validate()`** — parâmetro `toText` agora é `String` (antes `dynamic`). Se passava `toText: algumValorDynamic`, mude para `toText: algumValor.toString()`.
+
+2. **`isValidEmail()`** — local parts começando com ponto agora são rejeitadas. `".test@example.com"` retorna `false`.
+
+3. **`isValidDateTime()`** — anos com >4 dígitos ou negativos agora são rejeitados. `"12345-01-01"` e `"-2023-01-01"` retornam `false`.
+
+4. **`isValidUrl()`** — portas acima de 65535 são rejeitadas. `"http://example.com:70000"` retorna `false`.
+
+---
 
 ## ☕ Support the Project
 
