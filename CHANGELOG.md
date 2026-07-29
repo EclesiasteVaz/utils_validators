@@ -1,4 +1,7 @@
-# 1.2.2
+# 1.2.3
+Melhorias na validação de e-mail, caracteres e nomes, com correção de bugs no NameValidator.
+
+## 1.2.2
 Melhorado ainda mais a validação de nomes.
 
 ## 1.2.1
