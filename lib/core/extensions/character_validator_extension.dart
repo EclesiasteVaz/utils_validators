@@ -5,13 +5,9 @@ extension CharacterValidatorExtension on String {
   /// Checks if the string contains only alphabetic characters.
   ///
   /// This includes both uppercase and lowercase letters.
-  bool get isAlphabetic => RegExp(r'^[a-zA-Z]+$').hasMatch(this);
+  bool get isAlphabetic => RegExp(r'^\p{L}+$', unicode: true).hasMatch(this);
 
-  /// Checks if the string contains only numeric digits.
   bool get isNumeric => RegExp(r'^[0-9]+$').hasMatch(this);
 
-  /// Checks if the string contains only alphanumeric characters.
-  ///
-  /// This includes letters and numbers.
-  bool get isAlphanumeric => RegExp(r'^[a-zA-Z0-9]+$').hasMatch(this);
+  bool get isAlphanumeric => RegExp(r'^[\p{L}0-9]+$', unicode: true).hasMatch(this);
 }
