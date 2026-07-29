@@ -39,7 +39,7 @@ extension NameValidatorExtension on String {
   /// 'John Doe'.isValidName(minWords: 2); // returns true
   /// 'Maria de Souza'.isValidName(minWords: 2, maxWords: 4); // returns true
   /// 'João Pedro'.isValidName(minWords: 3); // returns false (minWords not met)
-  /// 'Ana Carolina de Jesus'.isValidName(maxWords: 3); // returns false (maxWords exceeded)
+  /// 'Ana Carolina de Jesus'.isValidName(maxWords: 2); // returns false (maxWords exceeded by 3 significant words)
   /// ```
   bool isValidName({int minWords = 1, int? maxWords}) {
     final trimmedName = trim();
@@ -53,10 +53,13 @@ extension NameValidatorExtension on String {
         .where((word) => word.isNotEmpty)
         .toList();
 
-    if (minWords > 0 && words.length < minWords) {
+    final significantWords =
+        words.where((word) => !_nameParticles.contains(word.toLowerCase())).length;
+
+    if (minWords > 0 && significantWords < minWords) {
       return false;
     }
-    if (maxWords != null && words.length > maxWords) {
+    if (maxWords != null && significantWords > maxWords) {
       return false;
     }
 

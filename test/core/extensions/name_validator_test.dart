@@ -111,8 +111,8 @@ void main() {
     });
 
     test('should return false when word count exceeds the maxWords limit', () {
-      // 4 palavras, maxWords 3. Inválido.
-      expect('Ana Carolina de Jesus'.isValidName(maxWords: 3), isFalse);
+      // 3 palavras significativas, maxWords 2. Inválido.
+      expect('Ana Carolina de Jesus'.isValidName(maxWords: 2), isFalse);
       // 2 palavras, maxWords 1. Inválido.
       expect('João Pedro'.isValidName(maxWords: 1), isFalse);
     });
@@ -120,8 +120,8 @@ void main() {
     test('should return false when minWords and maxWords are not met', () {
       // 1 palavra, minWords 2, maxWords 3. Falha no minWords.
       expect('João'.isValidName(minWords: 2, maxWords: 3), isFalse);
-      // 4 palavras, minWords 2, maxWords 3. Falha no maxWords.
-      expect('Ana Carolina de Jesus'.isValidName(minWords: 2, maxWords: 3),
+      // 3 palavras significativas, minWords 2, maxWords 2. Falha no maxWords.
+      expect('Ana Carolina de Jesus'.isValidName(minWords: 2, maxWords: 2),
           isFalse);
     });
   });
