@@ -4,7 +4,7 @@
 
 Simplify your string validation logic with an elegant, intuitive, and dependency-free API.
 
-**Current Version: 2.0.0** 🚀
+**Current Version: 2.0.1** 🚀
 
 <br>
 
@@ -25,7 +25,7 @@ Add the dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  utils_validators: ^2.0.0
+  utils_validators: ^2.0.1
 ```
 
 Then, run the command in your terminal:

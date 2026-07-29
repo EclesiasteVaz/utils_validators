@@ -1,3 +1,10 @@
+# 2.0.1
+
+## Correções
+- CI: substituído `dart-lang/setup-dart` por `subosito/flutter-action` para resolver dependência do Flutter SDK
+
+---
+
 # 2.0.0
 
 ## 🚨 Breaking Changes

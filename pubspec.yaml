@@ -1,6 +1,6 @@
 name: utils_validators
 description: A Dart package that provides useful validators such as a name validator.
-version: 2.0.0
+version: 2.0.1
 homepage: https://github.com/EclesiasteVaz/utils_validators
 
 environment:
